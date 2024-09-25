@@ -1,4 +1,3 @@
-import 'package:blocaddevent/presentation/component/add_user.dart';
 import 'package:blocaddevent/presentation/ui/add_user_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AddUserUi(),
     );

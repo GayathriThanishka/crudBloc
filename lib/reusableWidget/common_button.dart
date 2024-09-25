@@ -5,13 +5,13 @@ class CommonButtonField extends StatelessWidget {
   final String buttonName;
   final VoidCallback onTap;
   final Color color;
-  final Color textColor;
+
   const CommonButtonField({
     Key? key,
     required this.buttonName,
     required this.onTap,
     required this.color,
-    required this.textColor,
+   
   }) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class CommonButtonField extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         child: Text(
           buttonName,
-          style: TextStyle(color: textColor, fontWeight: FontWeight.w700),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
         ));
   }
 }

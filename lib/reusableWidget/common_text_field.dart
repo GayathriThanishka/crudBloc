@@ -13,7 +13,7 @@ class CommonTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(fieldName),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
         SizedBox(

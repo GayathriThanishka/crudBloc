@@ -24,6 +24,12 @@ final Adduser user;
   DeleteButtonClickEvent(this.user);
   
 }
+//Edit Button Event
 
+class EditButtonClickEvent extends AdduserEvent{
+  final Adduser editUser;
+
+  EditButtonClickEvent({required this.editUser});
+}
 
 

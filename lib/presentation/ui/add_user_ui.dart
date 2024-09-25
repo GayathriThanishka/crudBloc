@@ -13,12 +13,12 @@ class _AddUserUiState extends State<AddUserUi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add User Information"),
-        backgroundColor: Color.fromARGB(255, 216, 212, 212),
+        title: const Text("Add User Information"),
+        backgroundColor: const Color.fromARGB(255, 216, 212, 212),
         centerTitle: true,
       ),
-      backgroundColor: Color.fromARGB(255, 226, 225, 225),
-      body: AddUser(),
+      backgroundColor: const Color.fromARGB(255, 226, 225, 225),
+      body: const AddUser(),
     );
   }
 }

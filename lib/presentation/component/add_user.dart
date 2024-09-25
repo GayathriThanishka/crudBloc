@@ -13,6 +13,7 @@ class AddUser extends StatelessWidget {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailIdController = TextEditingController();
     final bloc = AdduserBloc();
+    final formkey = GlobalKey<FormState>();
 
     return Center(
       child: BlocConsumer<AdduserBloc, AdduserState>(
@@ -28,57 +29,57 @@ class AddUser extends StatelessWidget {
             ));
           } else if (state is AddUserFailureState) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                  content:
-                      Text(state.error)), // Show error message in a SnackBar
+              SnackBar(content: Text(state.error)),
             );
           }
         },
         builder: (context, state) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CommonTextField(
-                  controller: nameController, fieldName: "UserName"),
-              // ignore: prefer_const_constructors
-              SizedBox(
-                height: 12,
-              ),
-              CommonTextField(
-                  controller: emailIdController, fieldName: "EmailId"),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CommonButtonField(
-                    textColor: Colors.black,
-                    color: const Color.fromARGB(255, 121, 75, 248),
-                    buttonName: "Save",
-                    onTap: () {
-                      bloc.add(AddUserButtonClickEvent(
-                          addUserList: bloc.addUserList,
-                          name: nameController.text,
-                          email: emailIdController.text));
-                    },
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  CommonButtonField(
-                    textColor: Colors.black,
-                    color: const Color.fromARGB(255, 240, 87, 87),
-                    buttonName: "Cancel",
-                    onTap: () {
-                      nameController.clear();
-                      emailIdController.clear();
-                    },
-                  )
-                ],
-              )
-            ],
+          return Form(
+            key: formkey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CommonTextField(
+                    controller: nameController, fieldName: "UserName"),
+                const SizedBox(
+                  height: 12,
+                ),
+                CommonTextField(
+                    controller: emailIdController, fieldName: "EmailId"),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CommonButtonField(
+                      color: const Color.fromARGB(255, 121, 75, 248),
+                      buttonName: "Save",
+                      onTap: () {
+                        if (formkey.currentState!.validate()) {
+                          bloc.add(AddUserButtonClickEvent(
+                              addUserList: bloc.userList,
+                              name: nameController.text,
+                              email: emailIdController.text));
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    CommonButtonField(
+                      color: const Color.fromARGB(255, 240, 87, 87),
+                      buttonName: "Cancel",
+                      onTap: () {
+                        nameController.clear();
+                        emailIdController.clear();
+                      },
+                    )
+                  ],
+                )
+              ],
+            ),
           );
         },
       ),
